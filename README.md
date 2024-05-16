@@ -6,7 +6,7 @@ _____
 ## Overview
 
 
-Fully open-source neural translation framework powered by XLM-RoBERTa for language detection and mBART-large-50-many-to-many for end-to-end directed machine translation.
+Open-source neural translation framework leveraging XLM-RoBERTa and mBART for end-to-end language detection and machine translation.
 
 _____
 
