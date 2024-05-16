@@ -1,0 +1,2 @@
+backend/translation/models/lang_det/* filter=lfs diff=lfs merge=lfs -text
+backend/translation/models/lang_tr/* filter=lfs diff=lfs merge=lfs -text
