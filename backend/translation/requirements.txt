@@ -1,0 +1,13 @@
+requests
+aiohttp==3.9.5
+transformers==4.40.1
+fastapi==0.109.2
+uvicorn==0.27.1
+natsort==8.4.0
+python-dotenv==1.0.1
+lxml==5.1.0
+pandas==2.2.2
+polars==0.20.17
+torch==2.3.0
+sentencepiece==0.2.0
+protobuf==5.26.1
