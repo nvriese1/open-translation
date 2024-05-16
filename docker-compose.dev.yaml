@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  runtime:
+    #platform: linux/amd64
+    image: translation/runtime:dev
+    environment:
+      LOCAL_DEPLOYMENT: 'True'
+      PORT: "${PORT:-8080}"
+    build: ./backend/translation
+    restart: unless-stopped
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "${PORT:-8080}"]
+    networks:
+      - app
+    volumes:
+      - ./backend/translation:/app
+    working_dir: /app
+    ports:
+      - "${PORT:-8080}:${PORT:-8080}"
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  models_volume:

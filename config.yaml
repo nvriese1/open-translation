@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: translation
+  labels:
+    app: translation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: translation
+  template:
+    metadata:
+      labels:
+        app: translation
+    spec:
+      containers:
+      - name: translation
+        image: "us-central1-docker.pkg.dev/project-saturn-414623/translation/api:YOUR_TAG" # Update this with your image path and tag
+        ports:
+        - containerPort: 8080  # Ensure this matches the PORT environment variable if it changes
+        env:
+        - name: PORT
+          value: "8080"
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "project-saturn-414623"
+        - name: LOCATION
+          value: "us-central1"
+        - name: SERVICE
+          value: "translation"
+        - name: MEMORY
+          value: "4Gi"
+        - name: MIN_INSTANCES
+          value: "0"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+            nvidia.com/gpu: 1 # Requesting 1 GPU
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+            nvidia.com/gpu: 1 # Limiting to 1 GPU
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
